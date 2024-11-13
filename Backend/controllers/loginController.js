@@ -29,7 +29,8 @@ exports.loginUser = async (req,resp) => {
             const payload = {
                 name : user.name,
                 email : user.email,
-                _id: user._id
+                _id: user._id,
+                img : user.img
             }
             const options = {
                 httpOnly : true,

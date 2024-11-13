@@ -10,6 +10,9 @@ import LogIn from './components/LogIn';
 import UserLoginAccount from './components/UserLoginAccount';
 import Videos from './body/Videos';
 
+import userStore from './store/userStore';
+import { Provider } from "react-redux"
+
 const appRouter = createBrowserRouter([
   {
     path : "/",
@@ -40,7 +43,8 @@ const appRouter = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  
-   <RouterProvider router={appRouter}></RouterProvider> 
-  
+
+  <Provider store={userStore} >
+     <RouterProvider router={appRouter}></RouterProvider> 
+  </Provider>
 )

@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { login } from "../store/userSlice";
+
 function LogIn(){
     const [data, setData] = useState({
         email : "",
@@ -18,6 +21,8 @@ function LogIn(){
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
     async function handleSubmit(e){
         e.preventDefault();
         try{
@@ -30,8 +35,10 @@ function LogIn(){
             });
             const result = await response.json();
             if(result.success){
-                localStorage.setItem("email", result.user.email); 
+                localStorage.setItem('user', JSON.stringify(result.user));
                 navigate('/loginuseraccount');
+                console.log("Slice :",result);
+                dispatch(login(result.user));
             }
             else{
                 window.alert("User not Exist");

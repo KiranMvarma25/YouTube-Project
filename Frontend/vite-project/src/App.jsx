@@ -9,6 +9,9 @@ import Sidebar from "./components/Sidebar";
 import { useState } from "react";
 import SidebarIcons from "./components/SidebarIcons";
 
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+
 function App(){
   
   const [toggle, setToggle] = useState(false);
@@ -17,6 +20,21 @@ function App(){
     setToggle(!toggle);
     console.log(toggle)
   }
+
+  const userImg = useSelector(state => state.user.userData);
+  const userStatus = useSelector(state => state.user.userStatus);
+
+  useEffect(() => {
+    if(userImg){
+      console.log("User data loaded after refresh");
+    } 
+    else{
+      console.log("No user data found");
+    }
+  }, [userImg]);
+
+  console.log("userImg",userImg);
+  console.log("userStatus",userStatus);
 
   return (
     <>
@@ -30,7 +48,19 @@ function App(){
             <button className="sidebarChild4"><ImSearch /></button>
           </div>
           
-          <Link to={"/signup"}><h3 className="sidebarChild5"><IoPerson /></h3></Link>
+          <Link to={"/signup"}> 
+
+            { userStatus ? 
+                userImg ? (
+                            <img className="sidebarChild5" src={userImg.img} width="50px" height="50px" /> 
+                          ) : ( 
+                            <h3 className="sidebarChild5"><IoPerson /></h3>
+                          ) : (
+                            <h3 className="sidebarChild5"><IoPerson /></h3>
+                          )
+            }
+
+          </Link>
 
       </div>
 
