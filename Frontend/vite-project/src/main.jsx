@@ -8,6 +8,7 @@ import SignUp from './components/SignUp';
 import UserAccount from './components/UserAccount';
 import LogIn from './components/LogIn';
 import UserLoginAccount from './components/UserLoginAccount';
+import Videos from './body/Videos';
 
 const appRouter = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const appRouter = createBrowserRouter([
       {
         path : "/loginuseraccount",
         element : <UserLoginAccount />
+      },
+      {
+        path : "/getstartedwithvideos",
+        element : <Videos />
       }
     ]
   }
