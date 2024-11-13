@@ -31,7 +31,7 @@ exports.createUser = async (req,resp) => {
             });
         };
 
-        const createdUser = await signup.create({ name, email, pass : hashPass });
+        const createdUser = await signup.create({ name, email, pass : hashPass, img : `https://api.dicebear.com/5.x/initials/svg?seed=${name}` });
         resp.status(200).json({
             success : true,
             msg : "User Created Successfully",

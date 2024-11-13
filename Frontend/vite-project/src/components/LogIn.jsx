@@ -1,11 +1,9 @@
 import { useState } from "react";
 
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function SignUp(){
-
+function LogIn(){
     const [data, setData] = useState({
-        name : "",
         email : "",
         pass : ""
     })
@@ -23,7 +21,7 @@ function SignUp(){
     async function handleSubmit(e){
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:7000/base/signup", {
+            const response = await fetch("http://localhost:7000/base/loginwithauth", {
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
@@ -32,12 +30,11 @@ function SignUp(){
             });
             const result = await response.json();
             if(result.success){
-                localStorage.setItem("userId", result.User._id); 
-                localStorage.setItem("email", result.User.email);
-                navigate('/useraccount');
+                localStorage.setItem("email", result.user.email); 
+                navigate('/loginuseraccount');
             }
             else{
-                window.alert("User Already Exist");
+                window.alert("User not Exist");
             }
         }
         catch(error){
@@ -48,13 +45,6 @@ function SignUp(){
     return(
         <>
             <form onSubmit={handleSubmit}>
-                
-                <label htmlFor="name">Name</label>
-                <br />
-                <input type="text" value={data.name} name="name" placeholder="Enter your Name" onChange={handleChange} required />
-
-                <br />
-                <br />
 
                 <label htmlFor="email">Email</label>
                 <br />
@@ -70,15 +60,13 @@ function SignUp(){
                 <br />
                 <br />
 
-                <button type="submit">Sign Up</button>
+                <button type="submit">Log In</button>
 
             </form>
 
-            <p>Already an User</p>
-            <Link to={"/login"}><p>Log In</p></Link>
         </>
     )
 }
 
 
-export default SignUp;
+export default LogIn;

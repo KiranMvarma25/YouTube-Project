@@ -28,7 +28,8 @@ exports.loginUser = async (req,resp) => {
         if(isMatched){
             const payload = {
                 name : user.name,
-                email : user.email
+                email : user.email,
+                _id: user._id
             }
             const options = {
                 httpOnly : true,
@@ -39,7 +40,8 @@ exports.loginUser = async (req,resp) => {
             resp.cookie("token", token, options).status(200).json({
                 success : true,
                 msg : "Login Successfully",
-                Token : token
+                Token : token,
+                user: payload
             });
         }
         else{
