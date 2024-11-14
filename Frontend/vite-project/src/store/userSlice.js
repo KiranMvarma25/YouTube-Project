@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialUserData = JSON.parse(localStorage.getItem("user"));
+const storedUser = localStorage.getItem('user');
+
+let initialUserData = null;
+
+if(storedUser){
+  try{
+    initialUserData = JSON.parse(storedUser);
+  } 
+  catch(error){
+    console.error("No User Present");
+  }
+}
 
 const userSlice = createSlice({
     

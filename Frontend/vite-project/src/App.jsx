@@ -48,19 +48,17 @@ function App(){
             <button className="sidebarChild4"><ImSearch /></button>
           </div>
           
-          <Link to={"/signup"}> 
-
+          <div className="userSidebar">
             { userStatus ? 
                 userImg ? (
-                            <img className="sidebarChild5" src={userImg.img} width="50px" height="50px" /> 
+                            <Link to={"/loginuseraccount"}><img className="sidebarChild5" src={userImg.img} alt="User" /><p>{userImg.name}</p></Link>  
                           ) : ( 
-                            <h3 className="sidebarChild5"><IoPerson /></h3>
+                            <Link to={"/signup"}><IoPerson />Sign in</Link>
                           ) : (
-                            <h3 className="sidebarChild5"><IoPerson /></h3>
+                            <Link to={"/signup"}><IoPerson />Sign in</Link>
                           )
-            }
-
-          </Link>
+            }  
+          </div>
 
       </div>
 

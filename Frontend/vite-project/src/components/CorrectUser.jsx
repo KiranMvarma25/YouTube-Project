@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -14,9 +14,12 @@ function CorrectUser(props){
     function handleClickLogOut(){
         dispatch(logout());
         localStorage.removeItem('user');
-        navigate('/login');
         window.alert("Logged Out");
+        navigate('/signup')
     }
+
+    const userDetails = useSelector(store => store.user.userData);
+    console.log("userDetails", userDetails)
 
     return(
         <>

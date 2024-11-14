@@ -4,34 +4,44 @@
     margin: 0%;
 }
 
+
 .sidebarParent{
     border: 1px solid black;
     display: flex;
     flex-wrap: wrap;
-    height: 80px;
-    justify-content: space-around;
+    height: 100px;
+    justify-content: space-between;
     align-items: center;
+    padding: 10px 20px;
+    position: relative;
 }
 
 .sidebarChild1{
     font-size: x-large;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .sidebarChild2{
     font-size: xx-large;
+    display: flex;
+    align-items: center;
 }
 
 
 
 .sidebarSubChild1{
     display: flex;
-    flex-wrap: wrap;
-    height: 35px;
-    justify-content: flex-start;
+    flex: 1;
+    max-width: 600px;
+    align-items: center;
+    margin: 0 20px;
 }
 
 .sidebarChild3{
-    width: 500px;
+    width: 100%;
+    padding: 8px 12px;
     border-radius: 25px;
     margin-right: 10px;
     font-size: larger;
@@ -39,17 +49,32 @@
 
 .sidebarChild4{
     padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.userSidebar{
+    border: 2px solid black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-size: large;
 }
 
 .sidebarChild5{
-    font-size: xx-large;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .togglebar{
     border: 1px solid black;
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    justify-content:flex-start;
+    justify-content:flex-start; */
+    display: flex;
 }
 
 .togglebar1{
@@ -67,14 +92,16 @@
 
 .togglebar2{
     border: 2px solid blue;
+    /* padding: 25px;
+    width: 88%; */
+    /* flex: 2; */
     padding: 25px;
-    width: 88%;
 }
 
 .videos{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .videosChild{

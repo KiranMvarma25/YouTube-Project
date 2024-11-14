@@ -2,6 +2,11 @@ import { useState } from "react";
 
 import { useNavigate, Link } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { login } from "../store/userSlice";
+
+import { useSelector } from "react-redux";
+
 function SignUp(){
 
     const [data, setData] = useState({
@@ -20,6 +25,8 @@ function SignUp(){
 
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
+
     async function handleSubmit(e){
         e.preventDefault();
         try{
@@ -34,7 +41,8 @@ function SignUp(){
             if(result.success){
                 localStorage.setItem("userId", result.User._id); 
                 localStorage.setItem("email", result.User.email);
-                navigate('/useraccount');
+                dispatch(login(result.User));
+                // navigate('/useraccount');
             }
             else{
                 window.alert("User Already Exist");
@@ -44,6 +52,9 @@ function SignUp(){
             console.log(error);
         }
     }
+
+    const userStatus = useSelector(state => state.user.userStatus);
+    console.log("USERSTATUS",userStatus)
 
     return(
         <>
@@ -73,6 +84,11 @@ function SignUp(){
                 <button type="submit">Sign Up</button>
 
             </form>
+
+            {
+                userStatus ? <Link to={'/getstartedwithvideos'}><button>Get Started</button></Link> : "Sign Up to Get Started"
+            }
+
 
             <p>Already an User</p>
             <Link to={"/login"}><p>Log In</p></Link>

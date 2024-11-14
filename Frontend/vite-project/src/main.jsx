@@ -12,6 +12,7 @@ import Videos from './body/Videos';
 
 import userStore from './store/userStore';
 import { Provider } from "react-redux"
+import CorrectUser from './components/CorrectUser';
 
 const appRouter = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const appRouter = createBrowserRouter([
       {
         path : "/getstartedwithvideos",
         element : <Videos />
+      },
+      {
+        path : "/correctuser",
+        element : <CorrectUser />
       }
     ]
   }
