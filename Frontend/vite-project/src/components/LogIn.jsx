@@ -51,26 +51,27 @@ function LogIn(){
 
     return(
         <>
-            <form onSubmit={handleSubmit}>
+            <div className="signupForm">
+                <form onSubmit={handleSubmit} className="signupFormChild1">
 
-                <label htmlFor="email">Email</label>
-                <br />
-                <input type="email" value={data.email} name="email" placeholder="Enter your Email" onChange={handleChange} required />
+                    <label htmlFor="email" className="signupformLabel">Email</label>
+                    <br />
+                    <input type="email" value={data.email} name="email" placeholder="Enter your Email" onChange={handleChange} required className="signupformInput" />
 
-                <br />
-                <br />
+                    <br />
+                    <br />
 
-                <label htmlFor="pass">Password</label>
-                <br />
-                <input type="text" value={data.pass} name="pass" placeholder="Enter your Password" onChange={handleChange} required />
+                    <label htmlFor="pass" className="signupformLabel">Password</label>
+                    <br />
+                    <input type="text" value={data.pass} name="pass" placeholder="Enter your Password" onChange={handleChange} required className="signupformInput" />
 
-                <br />
-                <br />
+                    <br />
+                    <br />
 
-                <button type="submit">Log In</button>
+                    <button type="submit" className="signupformButton">Log In</button>
 
-            </form>
-
+                </form>
+            </div>
         </>
     )
 }

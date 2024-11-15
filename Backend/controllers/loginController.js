@@ -34,7 +34,7 @@ exports.loginUser = async (req,resp) => {
             }
             const options = {
                 httpOnly : true,
-                expires : new Date(Date.now() + 5 * 60 * 1000)
+                expires : new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
             }
 
             let token = jwt.sign(payload, process.env.SECRET_KEY);

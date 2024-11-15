@@ -31,7 +31,7 @@ function UserAccount(){
 
     return(
         <>
-            <h1>Hello User Account</h1>
+            {/* <h1>Hello User Account</h1> */}
             {
                 data.map(user => (
                     <CorrectUser data={user} key={user._id} />

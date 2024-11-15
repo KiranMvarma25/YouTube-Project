@@ -20,7 +20,7 @@ const userSlice = createSlice({
     initialState : {
         userStatus : !!initialUserData,
         userData : initialUserData,
-        userChannel : null,
+        userChannel : [],
     },
         
 
@@ -38,7 +38,7 @@ const userSlice = createSlice({
         },
 
         channel : (state,action) => {
-            state.userChannel = action.payload
+            state.userChannel.push(action.payload);
         }
     }
 })

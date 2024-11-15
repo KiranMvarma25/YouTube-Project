@@ -68,11 +68,12 @@ function App(){
           {!toggle ? <Sidebar /> : <SidebarIcons /> }
         </div>
         
-        <div className="togglebar2">
+        {/* <div className="togglebar2">
           <Outlet />
-        </div>
+        </div> */}
         
       </div>
+      <Outlet />
     </>
   )
 }

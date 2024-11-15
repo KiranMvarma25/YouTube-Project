@@ -74,7 +74,7 @@
     /* display: flex;
     flex-wrap: wrap;
     justify-content:flex-start; */
-    display: flex;
+    /* display: flex; */
 }
 
 .togglebar1{
@@ -88,6 +88,7 @@
     justify-content:space-evenly;
     align-items: self-start;
     height: 500px;
+    float: left;
 }
 
 .togglebar2{
@@ -96,6 +97,7 @@
     width: 88%; */
     /* flex: 2; */
     padding: 25px;
+    /* margin-left: auto; */
 }
 
 .videos{
@@ -111,4 +113,78 @@
 
 .sidebaricons{
     font-size: xx-large;
+}
+
+
+
+
+
+
+
+
+
+.signupForm{
+    border: 2px solid green;
+    display: flex;
+    flex-wrap: wrap;
+    /* width: 40%; */
+    padding: 25px;
+    margin: auto;
+    margin-top: 50px;
+    justify-content: space-evenly;
+    align-items:center;
+    
+    /* height: 250px; */
+    /* margin: auto;
+    margin-top: 50px; */
+}
+
+.signupFormChild1{
+    border: 2px solid yellow;
+    padding: 50px;
+    margin-bottom: 25px;
+}
+
+.signupformLabel{
+    font-size: x-large;
+}
+
+.signupformInput{
+    padding: 5px;
+    width: 250px;
+    border-radius: 5px;
+    font-size: medium;
+}
+
+.signupformButton{
+    font-size: medium;
+    padding: 5px;
+
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.signupformButton:hover{
+    font-style: oblique;
+    background-color: rgba(197, 25, 25, 0.749);
+}
+
+.userAccount{
+    border: 2px solid blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    margin-top: 25px;
+}
+
+.userAccountImage{
+    margin-right: 25px;
+    border-radius: 50px;
+}
+
+.userAccountChild1{
+    margin-bottom: 10px;
 }

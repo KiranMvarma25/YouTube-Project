@@ -1,4 +1,6 @@
 const express = require('express');
+const cloudinary = require('./config/cloud');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -20,12 +22,24 @@ app.use(cookieParser());
 
 const router = require('./routes/signupRoute');
 const loginrouter = require('./routes/loginRoute');
+const uploadvideorouter = require('./routes/channelVideoRoute');
 
 app.use(express.json());
+
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : "/tmp/",
+}));
+
 app.use('/base', router);
 
 app.use('/base', loginrouter);
 
+app.use('/base', uploadvideorouter);
+
 const dbConnect = require('./config/db');
 
 dbConnect();
+
+
+cloudinary.cloudinaryConnect();

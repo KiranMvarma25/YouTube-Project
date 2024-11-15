@@ -57,41 +57,46 @@ function SignUp(){
     console.log("USERSTATUS",userStatus)
 
     return(
-        <>
-            <form onSubmit={handleSubmit}>
-                
-                <label htmlFor="name">Name</label>
-                <br />
-                <input type="text" value={data.name} name="name" placeholder="Enter your Name" onChange={handleChange} required />
+        <>  
+            <div className="signupForm">
+                <div>
+                    <form onSubmit={handleSubmit} className="signupFormChild1">
+                        
+                        <label htmlFor="name" className="signupformLabel">Name</label>
+                        <br />
+                        <input type="text" value={data.name} name="name" placeholder="Enter your Name" onChange={handleChange} required className="signupformInput" />
 
-                <br />
-                <br />
+                        <br />
+                        <br />
 
-                <label htmlFor="email">Email</label>
-                <br />
-                <input type="email" value={data.email} name="email" placeholder="Enter your Email" onChange={handleChange} required />
+                        <label htmlFor="email" className="signupformLabel">Email</label>
+                        <br />
+                        <input type="email" value={data.email} name="email" placeholder="Enter your Email" onChange={handleChange} required className="signupformInput" />
 
-                <br />
-                <br />
+                        <br />
+                        <br />
 
-                <label htmlFor="pass">Password</label>
-                <br />
-                <input type="text" value={data.pass} name="pass" placeholder="Enter your Password" onChange={handleChange} required />
+                        <label htmlFor="pass" className="signupformLabel">Password</label>
+                        <br />
+                        <input type="text" value={data.pass} name="pass" placeholder="Enter your Password" onChange={handleChange} required className="signupformInput" />
 
-                <br />
-                <br />
+                        <br />
+                        <br />
 
-                <button type="submit">Sign Up</button>
+                        <button type="submit" className="signupformButton">Sign Up</button>
 
-            </form>
+                    </form>
+                </div>
 
-            {
-                userStatus ? <Link to={'/getstartedwithvideos'}><button>Get Started</button></Link> : "Sign Up to Get Started"
-            }
-
-
-            <p>Already an User</p>
-            <Link to={"/login"}><p>Log In</p></Link>
+                <div className="signupFormChild1">
+                    <h3>{
+                        userStatus ? <Link to={'/getstartedwithvideos'}><button className="signupformButton">Get Started</button></Link> : "Sign Up to Get Started"
+                    }</h3>
+                    <br />
+                    <p>Already an User</p>
+                    <Link to={"/login"}><p>Log In</p></Link>
+                </div>
+            </div>
         </>
     )
 }
