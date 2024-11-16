@@ -38,10 +38,13 @@ const userSlice = createSlice({
         },
 
         channel : (state,action) => {
-            state.userChannel.push(action.payload);
+            state.userChannel = [action.payload];
+        },
+        deletechannelvideo : (state,action) => {
+          state.userChannel = [];
         }
     }
 })
 
 export default userSlice.reducer;
-export const { login, logout, channel } = userSlice.actions;
+export const { login, logout, channel, deletechannelvideo } = userSlice.actions;

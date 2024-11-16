@@ -30,7 +30,6 @@ function CorrectUser(props){
         setToggle(!toggle);
     }
 
-
     return(
         <>
 
@@ -47,6 +46,9 @@ function CorrectUser(props){
             <div>
                 
                 <button onClick={handleUploadVideo} className="signupformButton">Upload Video</button>
+                <br />
+                <br />
+                <p>Wait for a moment and refresh the page after uploading the Video</p>
                 
                 <br />
                 <br />

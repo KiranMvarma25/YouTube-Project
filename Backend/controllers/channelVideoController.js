@@ -171,3 +171,77 @@ exports.getChannelVideo = async(req,resp) => {
         })
     }
 }
+
+exports.getChannelVideoById = async (req, resp) => {
+    try {
+        const { userId } = req.params;
+
+        if(!userId){
+            return resp.status(400).json({
+                success: false,
+                msg: "User ID is required",
+            });
+        }
+
+        const userVideos = await channelVideoSchema.find({ channelVideoUploader: userId });
+
+        if(userVideos.length === 0){
+            return resp.status(404).json({
+                success: false,
+                msg: "No videos found for the specified user",
+            });
+        }
+
+        resp.status(200).json({
+            success: true,
+            msg: "Fetched videos successfully",
+            data: userVideos,
+        });
+    } 
+    catch(error){
+        console.error("Error fetching videos:", error);
+        resp.status(500).json({
+            success: false,
+            msg: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};
+
+
+exports.deleteChannelVideoById = async (req, resp) => {
+    try {
+
+        const { userId } = req.params;
+
+        if (!userId) {
+            return resp.status(400).json({
+                success: false,
+                msg: "User ID is required",
+            });
+        }
+
+        const deleteResult = await channelVideoSchema.deleteMany({ channelVideoUploader: userId });
+
+        if(deleteResult.deletedCount === 0){
+            return resp.status(404).json({
+                success: false,
+                msg: "No videos found for the specified user",
+            });
+        }
+
+        resp.status(200).json({
+            success: true,
+            msg: "Videos deleted successfully",
+            deletedCount: deleteResult.deletedCount,
+        });
+    } 
+    catch(error){
+        console.error("Error deleting videos:", error);
+        resp.status(500).json({
+            success: false,
+            msg: "Internal Server Error",
+            error: error.message,
+        });
+    }
+};
