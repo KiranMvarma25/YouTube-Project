@@ -211,33 +211,31 @@ exports.getChannelVideoById = async (req, resp) => {
 
 exports.deleteChannelVideoById = async (req, resp) => {
     try {
+        const { videoId } = req.body;
 
-        const { userId } = req.params;
-
-        if (!userId) {
+        if(!videoId){
             return resp.status(400).json({
                 success: false,
-                msg: "User ID is required",
+                msg: "Video ID is required",
             });
         }
 
-        const deleteResult = await channelVideoSchema.deleteMany({ channelVideoUploader: userId });
+        const deleteResult = await channelVideoSchema.findByIdAndDelete(videoId);
 
-        if(deleteResult.deletedCount === 0){
+        if(!deleteResult){
             return resp.status(404).json({
                 success: false,
-                msg: "No videos found for the specified user",
+                msg: "Video not found",
             });
         }
 
         resp.status(200).json({
             success: true,
-            msg: "Videos deleted successfully",
-            deletedCount: deleteResult.deletedCount,
+            msg: "Video deleted successfully",
         });
     } 
     catch(error){
-        console.error("Error deleting videos:", error);
+        console.error("Error deleting video:", error);
         resp.status(500).json({
             success: false,
             msg: "Internal Server Error",

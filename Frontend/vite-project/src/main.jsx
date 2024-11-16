@@ -15,6 +15,9 @@ import { Provider } from "react-redux"
 import CorrectUser from './components/CorrectUser';
 import DisplayVideos from './channel/DisplayVideos';
 
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const appRouter = createBrowserRouter([
   {
     path : "/",
@@ -56,5 +59,6 @@ createRoot(document.getElementById('root')).render(
 
   <Provider store={userStore} >
      <RouterProvider router={appRouter}></RouterProvider> 
+     <ToastContainer ></ToastContainer>
   </Provider>
 )

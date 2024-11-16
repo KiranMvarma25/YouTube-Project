@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { channel } from "../store/userSlice";
 
+import { toast } from "react-toastify";
+
 function Channel() {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
@@ -18,8 +20,12 @@ function Channel() {
         setImage(e.target.files[0]);
     };
 
+    let count = 0;
+
     async function handleSubmit(e){
         e.preventDefault();
+
+        count = count + 1;
 
         if(!title || !desc || !video || !image){
             return window.alert("Please fill all fields and upload both video and image.");
@@ -32,20 +38,27 @@ function Channel() {
         formData.append("video", video);
         formData.append("image", image);
 
-        try {
+        try{
             const response = await fetch("http://localhost:7000/base/uploadVideo", {
                 method: "POST",
                 body: formData,
             });
             const result = await response.json();
 
-            if (result.success) {
+            if(result.success){
                 dispatch(channel(result.Channel)); 
-            } else {
-                window.alert("Failed to Upload");
+                if(count == 1){
+                    toast.success("Video Uploaded Successfully");
+                    setTimeout(() => {
+                        toast.info("Refresh the Page");
+                    },1000);
+                }
+            } 
+            else{
+                toast.error("Failed to Upload");
             }
         }
-        catch(error) {
+        catch(error){
             console.log(error);
         }
     }

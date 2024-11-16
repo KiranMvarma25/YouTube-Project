@@ -18,7 +18,7 @@ function ChannelVideos(){
     const dispatch = useDispatch();
 
     const getData = async () => {
-        try {
+        try{
             const response = await fetch(`http://localhost:7000/base/channelVideos/${userId}`, {
                 method: "GET",
                 headers: {
