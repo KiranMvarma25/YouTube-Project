@@ -12,9 +12,18 @@ import SidebarIcons from "./components/SidebarIcons";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
+import { useDispatch } from "react-redux";
+import { SearchFilteredVideos } from "./store/userSlice";
+
 function App(){
   
   const [toggle, setToggle] = useState(false);
+
+  const [search, setSearch] = useState("");
+  const [filteredVideo, setFilteredVideo] = useState([]);
+  const [isSearchPerformed, setIsSearchPerformed] = useState(false);
+
+  const dispatch = useDispatch();
 
   function handleClick(){
     setToggle(!toggle);
@@ -24,17 +33,49 @@ function App(){
   const userImg = useSelector(state => state.user.userData);
   const userStatus = useSelector(state => state.user.userStatus);
 
-  useEffect(() => {
-    if(userImg){
-      console.log("User data loaded after refresh");
-    } 
-    else{
-      console.log("No user data found");
-    }
-  }, [userImg]);
+  // useEffect(() => {
+  //   if(userImg){
+  //     console.log("User data loaded after refresh");
+  //   } 
+  //   else{
+  //     console.log("No user data found");
+  //   }
+  // }, [userImg]);
+
+
 
   console.log("userImg",userImg);
   console.log("userStatus",userStatus);
+
+  const data = useSelector(state => state.user.allVideos || []);
+  console.log("Filter data",data);
+
+  useEffect(() => {
+    if (!isSearchPerformed) {
+      setFilteredVideo(data);
+    }
+  }, [data, isSearchPerformed]);
+
+  function handleSearch(e) {
+    const search = e.target.value.toLowerCase();
+    setSearch(search);
+    console.log("Search", search);
+  }
+
+  function handleSearchClick() {
+    const filtered = data.filter(video =>
+      video.channelVideoName.toLowerCase().includes(search)
+    );
+    setFilteredVideo(filtered);
+    dispatch(SearchFilteredVideos(filtered));
+    setIsSearchPerformed(true); // Mark that search has been performed
+    console.log("filtered", filtered);
+  }
+
+  const handleShowAllVideos = () => {
+    setSearch(""); // Reset the search input
+    dispatch(SearchFilteredVideos(data)); // Show all videos
+  }
 
   return (
     <>
@@ -44,8 +85,8 @@ function App(){
           <h2 className="sidebarChild2"><ImYoutube />YouTube</h2>
           
           <div className="sidebarSubChild1"> 
-            <input className="sidebarChild3" type="text" placeholder="   Search" />
-            <button className="sidebarChild4"><ImSearch /></button>
+            <input className="sidebarChild3" type="text" placeholder="   Search" onChange={handleSearch} />
+            <button className="sidebarChild4" onClick={handleSearchClick}><ImSearch /></button>
           </div>
           
           <div className="userSidebar">
@@ -65,7 +106,7 @@ function App(){
       <div className="togglebar">
 
         <div className="togglebar1">
-          {!toggle ? <Sidebar /> : <SidebarIcons /> }
+          {!toggle ? <Sidebar ShowAllVideos={handleShowAllVideos} /> : <SidebarIcons /> }
         </div>
         
         {/* <div className="togglebar2">

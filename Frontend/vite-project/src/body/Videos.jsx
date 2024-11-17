@@ -6,6 +6,8 @@ import { setVideos } from "../store/userSlice";
 
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 function Videos(){
 
     const [videoData, setVideoData] = useState([]);
@@ -42,25 +44,28 @@ function Videos(){
 
     console.log("Videos Data",videoData);
 
+    const filteredVideo = useSelector(state => state.user.searchedVideos);
+    console.log("Filtered Video", filteredVideo);
+
     return (
         <>
         <div className="videos">
-        {loading ? (
-                    <p>Loading videos...</p>
-                    ) : videoData.length > 0 ? (
-                        videoData.map((video) => (
+            {loading ? (
+                        <p>Loading videos...</p>
+                        ) : videoData.length > 0 ? (
+                        (filteredVideo.length > 0 ? filteredVideo : videoData).map((video) => (
                             <Link key={video._id} to={`/mainvideos/${video._id}`}>
                                 <div className="videosChild">
                                     <p>{video.channelVideoName}</p>
-                                    <img src={video.channelVideoThumbnail} alt={`Thumbnail of ${video.channelVideoName}`} width="350px" height="250px" controls></img>
+                                    <img src={video.channelVideoThumbnail} alt={`Thumbnail of ${video.channelVideoName}`} width="350px" height="250px" controls />
                                     <p>{video.channelVideoDescription}</p>
                                 </div>
                             </Link>
-                    ))
-                ) : (
-                    <p>No videos available.</p>
-                )}
-            </div>
+                        ))
+                        ) : (
+                            <p>No videos available.</p>
+            )}
+        </div>
         {/* <div className="videos">
             {
                 Books.map(book => (

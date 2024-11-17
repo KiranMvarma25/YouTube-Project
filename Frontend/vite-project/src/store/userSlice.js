@@ -34,6 +34,7 @@ const userSlice = createSlice({
         userData : initialUserData,
         userChannel : initialChannelVideo ? [initialChannelVideo] : [],
         allVideos : [],
+        searchedVideos : [],
     },
         
 
@@ -59,9 +60,12 @@ const userSlice = createSlice({
 
         setVideos : (state, action) => {
           state.allVideos = action.payload;
+        },
+        SearchFilteredVideos : (state,action) => {
+          state.searchedVideos = action.payload;
         }
     }
 })
 
 export default userSlice.reducer;
-export const { login, logout, channel, setVideos } = userSlice.actions;
+export const { login, logout, channel, setVideos, SearchFilteredVideos } = userSlice.actions;
