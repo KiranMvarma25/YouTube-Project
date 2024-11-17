@@ -30,6 +30,7 @@ function DisplayVideos() {
 
             if(response.ok){
                 toast.success("Video Deleted Successfully");
+                localStorage.removeItem("channelVideo");
                 setTimeout(() => {
                     toast.info("Refresh the page");
                 },1000);
@@ -50,6 +51,7 @@ function DisplayVideos() {
             <h3>Video Details</h3>
             <p>{videoData.channelVideoName}</p>
             <video src={videoData.channelVideourl} width="400px" height="300px" controls></video>
+            <p>{videoData.channelDescription}</p>
             <br />
             <br />
             <button onClick={handleClickDeleteVideo} className="signupformButton">Delete Video</button>

@@ -13,6 +13,18 @@ if(storedUser){
   }
 }
 
+const storedChannelVideo = localStorage.getItem("channelVideo");
+let initialChannelVideo = null;
+
+if(storedChannelVideo){
+  try{
+    initialChannelVideo = JSON.parse(storedChannelVideo);
+  } 
+  catch(error){
+    console.error("Error parsing channel video from localStorage");
+  }
+}
+
 const userSlice = createSlice({
     
     name : 'user',
@@ -20,7 +32,8 @@ const userSlice = createSlice({
     initialState : {
         userStatus : !!initialUserData,
         userData : initialUserData,
-        userChannel : [],
+        userChannel : initialChannelVideo ? [initialChannelVideo] : [],
+        allVideos : [],
     },
         
 
@@ -34,14 +47,21 @@ const userSlice = createSlice({
         logout : (state,action) => {
             state.userStatus = false;
             state.userData = null;
+            state.userChannel = [];
             localStorage.removeItem("user");
+            localStorage.removeItem("channelVideo");
         },
 
         channel : (state,action) => {
             state.userChannel = [action.payload];
+            localStorage.setItem("channelVideo", JSON.stringify(action.payload));
         },
+
+        setVideos : (state, action) => {
+          state.allVideos = action.payload;
+        }
     }
 })
 
 export default userSlice.reducer;
-export const { login, logout, channel } = userSlice.actions;
+export const { login, logout, channel, setVideos } = userSlice.actions;

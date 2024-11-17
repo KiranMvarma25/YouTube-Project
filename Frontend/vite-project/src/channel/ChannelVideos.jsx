@@ -39,7 +39,7 @@ function ChannelVideos(){
         }
     };
 
-    const handleVideoClick = (video) => {
+    const handleVideoClick = async (video) => {
         dispatch(channel(video));
     };
     
@@ -62,8 +62,7 @@ function ChannelVideos(){
                                 <img src={video.channelVideoThumbnail} alt={video.channelVideoName} width="50px" />
                             </div>
                         </Link>
-
-                    ))
+                ))
                 )}
         </>
     )

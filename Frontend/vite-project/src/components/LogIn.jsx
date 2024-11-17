@@ -36,6 +36,7 @@ function LogIn(){
             const result = await response.json();
             if(result.success){
                 localStorage.setItem('user', JSON.stringify(result.user));
+                localStorage.setItem("userId", result.user._id); 
                 navigate('/loginuseraccount');
                 console.log("Slice :",result);
                 dispatch(login(result.user));

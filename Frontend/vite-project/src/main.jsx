@@ -17,6 +17,7 @@ import DisplayVideos from './channel/DisplayVideos';
 
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import MainVideos from './body/MainVideos';
 
 const appRouter = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path : "/displayvideos",
         element : <DisplayVideos />
+      },
+      {
+        path : "/mainvideos/:id",
+        element : <MainVideos />
       },
     ]
   }

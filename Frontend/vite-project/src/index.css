@@ -188,3 +188,14 @@
 .userAccountChild1{
     margin-bottom: 10px;
 }
+
+.mainvideos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.mainvideoschild1{
+    border: 5px solid blue;
+    width: 50%;
+}
