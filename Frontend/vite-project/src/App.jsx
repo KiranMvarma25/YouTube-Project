@@ -45,10 +45,10 @@ function App(){
 
 
   console.log("userImg",userImg);
-  console.log("userStatus",userStatus);
+  // console.log("userStatus",userStatus);
 
   const data = useSelector(state => state.user.allVideos || []);
-  console.log("Filter data",data);
+  // console.log("Filter data",data);
 
   useEffect(() => {
     if (!isSearchPerformed) {
@@ -68,13 +68,13 @@ function App(){
     );
     setFilteredVideo(filtered);
     dispatch(SearchFilteredVideos(filtered));
-    setIsSearchPerformed(true); // Mark that search has been performed
+    setIsSearchPerformed(true); 
     console.log("filtered", filtered);
   }
 
   const handleShowAllVideos = () => {
-    setSearch(""); // Reset the search input
-    dispatch(SearchFilteredVideos(data)); // Show all videos
+    setSearch(""); 
+    dispatch(SearchFilteredVideos(data)); 
   }
 
   return (

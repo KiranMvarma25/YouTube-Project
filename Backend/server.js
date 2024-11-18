@@ -23,6 +23,7 @@ app.use(cookieParser());
 const router = require('./routes/signupRoute');
 const loginrouter = require('./routes/loginRoute');
 const uploadvideorouter = require('./routes/channelVideoRoute');
+const commentrouter = require('./routes/commentRoute');
 
 app.use(express.json());
 
@@ -36,6 +37,8 @@ app.use('/base', router);
 app.use('/base', loginrouter);
 
 app.use('/base', uploadvideorouter);
+
+app.use('/base', commentrouter);
 
 const dbConnect = require('./config/db');
 

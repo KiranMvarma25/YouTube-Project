@@ -42,10 +42,10 @@ function Videos(){
         getVideos();
     },[]);
 
-    console.log("Videos Data",videoData);
+    // console.log("Videos Data",videoData);
 
     const filteredVideo = useSelector(state => state.user.searchedVideos);
-    console.log("Filtered Video", filteredVideo);
+    // console.log("Filtered Video", filteredVideo);
 
     return (
         <>
