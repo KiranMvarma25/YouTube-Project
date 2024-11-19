@@ -51,19 +51,20 @@ function ChannelVideos(){
     
     return (
         <>
-            <h3>Channel Videos</h3>
-            {data.length === 0 ? (
-                <p>No videos uploaded yet.</p>
-                ) : (
-                    data.map((video) => (
-                        <Link to={'/displayvideos'} key={video._id} onClick={() => handleVideoClick(video)}>
-                            <div key={video._id}>
-                                <p>{video.channelVideoName}</p>
-                                <img src={video.channelVideoThumbnail} alt={video.channelVideoName} width="50px" />
-                            </div>
-                        </Link>
-                ))
-                )}
+            {/* <div> */}
+                {data.length === 0 ? (
+                    <h4>No videos uploaded yet.</h4>
+                    ) : (
+                        data.map((video) => (
+                            <Link className="Router-Link" to={'/displayvideos'} key={video._id} onClick={() => handleVideoClick(video)}>
+                                <div key={video._id} className="videosChild">
+                                    <img className="thumbnail" src={video.channelVideoThumbnail} alt={video.channelVideoName} width="100%" height="250px" />
+                                    <p className="videosChild1">{video.channelVideoName}</p>
+                                </div>
+                            </Link>
+                    ))
+                    )}
+            {/* </div> */}
         </>
     )
 }

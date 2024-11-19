@@ -64,20 +64,36 @@ function Channel() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Title</h3>
-            <input type="text" onChange={(e) => setTitle(e.target.value)} />
+        <form onSubmit={handleSubmit} className="uploadVideoForm">
+            <h3 className="signupformLabel">Title</h3>
+            <br />
+            <input className="signupformInput" placeholder="Mention a Title" type="text" onChange={(e) => setTitle(e.target.value)} />
 
-            <h3>Description</h3>
-            <input type="text" onChange={(e) => setDesc(e.target.value)} />
+            <br />
+            <br />
 
-            <h3>Video</h3>
-            <input type="file" onChange={handleVideoChange} />
+            <h3 className="signupformLabel">Description</h3>
+            <br />
+            <input className="signupformInput" placeholder="Describe about your Video" type="text" onChange={(e) => setDesc(e.target.value)} />
 
-            <h3>Image (Thumbnail)</h3>
-            <input type="file" onChange={handleImageChange} />
+            <br />
+            <br />
 
-            <button type="submit">Upload Video</button>
+            <h3 className="signupformLabel">Video</h3>
+            <br />
+            <input className="signupformInput" type="file" onChange={handleVideoChange} />
+
+            <br />
+            <br />
+
+            <h3 className="signupformLabel">Image (Thumbnail)</h3>
+            <br />
+            <input className="signupformInput" type="file" onChange={handleImageChange} />
+
+            <br />
+            <br />
+
+            <button className="signupformButton" type="submit">Upload Video</button>
         </form>
     );
 }

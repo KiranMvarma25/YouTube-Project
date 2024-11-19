@@ -36,7 +36,8 @@ const userSlice = createSlice({
         allVideos : [],
         searchedVideos : [],
         comments : [],
-        allUsers : [], // For Getting the Details of All Users and display the names with help of Id
+        Users : [], // For Getting the Details of All Users
+        allUsers : [], // For Getting the Details of All Users and display the names with help of Id for comments
     },
         
 
@@ -73,9 +74,13 @@ const userSlice = createSlice({
 
         getUsersForComments : (state, action) => {
           state.allUsers = [action.payload]
+        },
+
+        fetchUsers : (state,action) => {
+          state.Users = action.payload;
         }
     }
 })
 
 export default userSlice.reducer;
-export const { login, logout, channel, setVideos, SearchFilteredVideos, addComment, getUsersForComments } = userSlice.actions;
+export const { login, logout, channel, setVideos, SearchFilteredVideos, addComment, getUsersForComments, fetchUsers } = userSlice.actions;

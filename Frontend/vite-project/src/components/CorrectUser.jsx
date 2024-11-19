@@ -32,43 +32,58 @@ function CorrectUser(props){
 
     return(
         <>
-
-            <div className="userAccount">
-                <img src={user.img} alt={`Image of ${user.name}`} height="100px" width="100px" className="userAccountImage" />
-                <div className="userAccountChilds">
-                    <h3 className="userAccountChild1">{user.name}</h3>
-                    <h3>{user.email}</h3>
+            <div className="correctUser">
+                <div className="userAccount">
+                    <img src={user.img} alt={`Image of ${user.name}`} height="100px" width="100px" className="userAccountImage" />
+                    <div className="userAccountChilds">
+                        <h3 className="userAccountChild1">{user.name}</h3>
+                        <h3>{user.email}</h3>
+                    </div>
                 </div>
+                
+                <br />
+                
+                <div className="userAccountChild2">
+                    <button onClick={handleUploadVideo} className="signupformButton">Upload Video</button>
+                    <Link to={"/getstartedwithvideos"}><button className="signupformButton">Get Started</button></Link>
+                    <button onClick={handleClickLogOut} className="signupformButton">Log Out</button>
+                </div>
+
+                <br />
+
+                <p className="accountPara">Wait for a moment and refresh the page after uploading the Video</p>
+                
+                <br />
+                <br />
+                <h2 className="headingInChannelAccount">Channel Videos</h2>
+                <br />
+
+                <div className="userAccount2">
+
+                    {/* <ChannelVideos /> */}
+
+                    {
+                        toggle ? <Channel /> : "" 
+                    }
+
+                    <ChannelVideos />
+                    
+                </div>
+
+                <br />
+                <br />
+                
+                {/* <div className="logout">
+                    <button onClick={handleClickLogOut} className="signupformButton">Log Out</button>
+                </div> */}
+
             </div>
-            
+
+            {/* <br />
             <br />
-            
-            <div>
-                
-                <button onClick={handleUploadVideo} className="signupformButton">Upload Video</button>
-                <br />
-                <br />
-                <p>Wait for a moment and refresh the page after uploading the Video</p>
-                
-                <br />
-                <br />
+            <br />
+            <br /> */}
 
-                <ChannelVideos />
-
-                {
-                    toggle ? <Channel /> : "" 
-                }
-
-                <br />
-
-                <Link to={"/getstartedwithvideos"}><h3>Get Started</h3></Link>
-        
-                <br />
-                <br />
-
-                <button onClick={handleClickLogOut} className="signupformButton">Log Out</button>
-
-            </div>
 
         </>
     );

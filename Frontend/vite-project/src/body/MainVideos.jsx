@@ -7,10 +7,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { addComment, getUsersForComments } from "../store/userSlice";
+import { addComment, fetchUsers, getUsersForComments } from "../store/userSlice";
 import { useEffect } from "react";
 
 import { toast } from "react-toastify";
+
+import { FaThumbsUp } from "react-icons/fa6";
+import { MdThumbDown } from "react-icons/md";
 
 function MainVideos(){
     
@@ -127,20 +130,66 @@ function MainVideos(){
                             return user ? user.name : null}) : [];
     console.log("Names",userNames);
 
+    const getUsers = async () => {
+        try{
+            let response = await fetch("http://localhost:7000/base/signup", {
+                method : "GET",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+            });
+            const result = await response.json();
+            if(result.success){
+                dispatch(fetchUsers(result.User));
+                console.log("Fetched Users Successfully");
+            }
+            else{
+                console.log("Erron in fetching users");
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getUsers();
+    },[]);
+
+    
+    const fetchedUsers = useSelector(state => state.user.Users);
+    console.log("Fetched Users in Main Videos",fetchedUsers);
+
     return (
         <>
             <div className="mainvideos">
 
                 {filteredVideo ? (
                     <div className="mainvideoschild1">
+                        <video className="mainvideosvideo" src={filteredVideo.channelVideourl} width="100%" height="40%" controls></video>
+                        <br />
                         <h1>{filteredVideo.channelVideoName}</h1>
-                        <video className="mainvideosvideo" src={filteredVideo.channelVideourl} width="100%" height="50%" controls></video>
-                        <h3>{filteredVideo.channelVideoDescription}</h3>
-                        <h4>Likes</h4>
-                        <h4>Subscribers</h4>
-                        <h4>Comments</h4>
-                        <input type="text" placeholder="Add Comment" onChange={(e) => setText(e.target.value)} />
+                        <br />
+                        <h2>{filteredVideo.channelVideoDescription}</h2>
+                        <br />
+                        <h3>
+                            {
+                                fetchedUsers.length > 0 ? fetchedUsers.find(user => user._id === filteredVideo.channelVideoUploader)?.name || "Unknown Uploader" : "Loading..."
+                            }
+                        </h3>
+                        <br />
+                        <div className="likesubscribe">
+                                    <div className="likedislike">
+                                        <h2 className="like"><FaThumbsUp />5.5k</h2>
+                                        <h2 className="dislike"><MdThumbDown /></h2>
+                                    </div>
+                            <button className="signupformButton">Subscribe</button>
+                        </div>
+                        <br />
+                        <h2>Comments</h2>
+                        <input className="commentInputField" type="text" placeholder="Add Comment" onChange={e => setText(e.target.value)} />
                         <button className="signupformButton" onClick={handleClickAddComment}>Add</button>
+                        <br />
                         <br />
                         <div>
                             {
@@ -149,8 +198,9 @@ function MainVideos(){
                                                 const user = userswhoarecommented ? userswhoarecommented.find(user => user._id === comment.commentedUser) : null;
                                                     return user ? (
                                                         <div key={comment._id}>
-                                                            <p>{user.name}</p>
-                                                            <p>{comment.comment}</p>
+                                                            <h3>by {user.name}</h3>
+                                                            <h3> -- {comment.comment}</h3>
+                                                            <br />
                                                         </div>
                                                     ) : null;
                                 })}
@@ -159,19 +209,24 @@ function MainVideos(){
                     ) : (
                         <p>Video not found!</p>
                     )}
+
                 
                 <div className="mainvideos2">
                     <h2>Other Videos:</h2>
                     {otherVideos.length > 0 ? (
-                        otherVideos.map((video) => (
-                            <Link key={video._id} to={`/mainvideos/${video._id}`}>
-                                <div className="videosChild">
-                                    <p>{video.channelVideoName}</p>
-                                    <img  src={video.channelVideoThumbnail} alt={`Thumbnail of ${video.channelVideoName}`} width="350px" height="250px" />
-                                    <p>{video.channelVideoDescription}</p>
-                                </div>
-                            </Link>
-                        ))
+                        otherVideos.map(video => {
+                            const uploader = fetchedUsers.find(user => user._id === video.channelVideoUploader);
+                            return (
+                                <Link className="Router-Link" key={video._id} to={`/mainvideos/${video._id}`}>
+                                    <div className="videosChild">
+                                        <img className="thumbnail" src={video.channelVideoThumbnail} alt={`Thumbnail of ${video.channelVideoName}`} width="100%" height="225px" />
+                                        <p className="videosChild1">{video.channelVideoName}</p>
+                                        {/* <p>{video.channelVideoDescription}</p> */}
+                                        <p className="videosChild2">{uploader ? uploader.name : "Unknown Uploader"}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })
                     ) : (
                         <p>No other videos available.</p>
                     )}

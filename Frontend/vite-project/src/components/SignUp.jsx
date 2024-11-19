@@ -94,7 +94,8 @@ function SignUp(){
                     }</h3>
                     <br />
                     <p>Already an User</p>
-                    <Link to={"/login"}><p>Log In</p></Link>
+                    <br />
+                    <Link className="Router-Link" to={"/login"}><button className="signupformButton">Log In</button></Link>
                 </div>
             </div>
         </>

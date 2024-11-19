@@ -82,21 +82,22 @@ function App(){
       <div className="sidebarParent">
 
           <button className="sidebarChild1" onClick={handleClick}><MdOutlineStorage /></button>
-          <h2 className="sidebarChild2"><ImYoutube />YouTube</h2>
+          <h2 className="sidebarChild2"><ImYoutube /></h2>
+          <h1 className="youtubeheading">YouTube</h1>
           
           <div className="sidebarSubChild1"> 
-            <input className="sidebarChild3" type="text" placeholder="   Search" onChange={handleSearch} />
+            <input className="sidebarChild3" type="text" placeholder=" Search" onChange={handleSearch} />
             <button className="sidebarChild4" onClick={handleSearchClick}><ImSearch /></button>
           </div>
           
           <div className="userSidebar">
             { userStatus ? 
                 userImg ? (
-                            <Link to={"/loginuseraccount"}><img className="sidebarChild5" src={userImg.img} alt="User" /><p>{userImg.name}</p></Link>  
+                            <Link className="Router-Link" to={"/loginuseraccount"}><img className="sidebarChild5" src={userImg.img} alt="User" /><p className="noneformobile">{userImg.name}</p></Link>  
                           ) : ( 
-                            <Link to={"/signup"}><IoPerson />Sign in</Link>
+                            <Link className="Router-Link" to={"/signup"}><IoPerson />Sign in</Link>
                           ) : (
-                            <Link to={"/signup"}><IoPerson />Sign in</Link>
+                            <Link className="Router-Link" to={"/signup"}><IoPerson />Sign in</Link>
                           )
             }  
           </div>
@@ -109,12 +110,12 @@ function App(){
           {!toggle ? <Sidebar ShowAllVideos={handleShowAllVideos} /> : <SidebarIcons /> }
         </div>
         
-        {/* <div className="togglebar2">
+        <div className="togglebar2">
           <Outlet />
-        </div> */}
-        
+        </div>
+        {/* <Outlet /> */}
       </div>
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   )
 }

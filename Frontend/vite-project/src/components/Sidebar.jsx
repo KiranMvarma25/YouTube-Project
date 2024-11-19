@@ -6,10 +6,10 @@ function Sidebar(props){
 
     return(
         <>
-            <Link to={"/getstartedwithvideos"} onClick={ShowAllVideos} ><h3>Home</h3></Link>
-            <h3>Shorts</h3>
-            <h3>Subscriptions</h3>
-            <h3>History</h3>
+            <Link to={"/getstartedwithvideos"} onClick={ShowAllVideos} ><h3 className="sidebarChildren">Home</h3></Link>
+            <h3 className="sidebarChildren">Shorts</h3>
+            <h3 className="sidebarChildren">Subscriptions</h3>
+            <h3 className="sidebarChildren">History</h3>
         </>
     )
 }

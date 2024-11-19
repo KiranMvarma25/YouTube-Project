@@ -11,7 +11,7 @@ function DisplayVideos() {
         return (
             <div>
                 <p>No video selected</p>
-                <Link to="/loginuseraccount">Back</Link>
+                <Link className="Router-Link" to="/loginuseraccount">Back</Link>
             </div>
         );
     }
@@ -45,16 +45,33 @@ function DisplayVideos() {
         }
     };
 
+    console.log("Display Videos",videoData);
+
     return (
         <>
-            <Link to="/loginuseraccount">Back</Link>
-            <h3>Video Details</h3>
-            <p>{videoData.channelVideoName}</p>
-            <video src={videoData.channelVideourl} width="400px" height="300px" controls></video>
-            <p>{videoData.channelDescription}</p>
+            <br />
+            <div className="backdeletevideoindisplayvideo">
+                <Link className="Router-Link" to="/loginuseraccount"><button className="signupformButton">Back</button></Link>
+                <button onClick={handleClickDeleteVideo} className="signupformButton">Delete Video</button>
+            </div>
+
             <br />
             <br />
-            <button onClick={handleClickDeleteVideo} className="signupformButton">Delete Video</button>
+            
+            <div>
+                <h2 className="displayVideoDetails">Video Details</h2>
+                <br />
+                <h3 className="displayVideoDetails">Video Title : {videoData.channelVideoName}</h3>
+                <br />
+                <h3 className="displayVideoDetails">Video Description : {videoData.channelVideoDescription}</h3>
+            </div>
+
+            <br />
+            
+            <div className="displayedVideo">
+                <video className="displayVideoChild" src={videoData.channelVideourl} width="75%"  controls></video>
+            </div>
+
         </>
     );
 }

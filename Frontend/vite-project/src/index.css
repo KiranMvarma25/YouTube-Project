@@ -2,31 +2,126 @@
     box-sizing: border-box;
     padding: 0%;
     margin: 0%;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    /* font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 }
+
+.Router-Link{
+    text-decoration: none;
+    color: black;
+}
+
+.thumbnail{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;    
+}
+
+@media( width < 999px){
+    /* .sidebarParent{
+        background-color: aqua;
+    } */
+    
+    .sidebarChild1{
+        display: none;
+    }
+
+    .noneformobile{
+        display: none;
+    }
+
+    /* .sidebarChild2{
+        color: red;
+    } */
+
+    .youtubeheading{
+        display: none;
+    }
+
+    .sidebarChild2{
+        margin-left: 10px;
+    }
+
+
+    .togglebar{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .togglebar1{
+        /* background-color: bisque; */
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+    
+    .mainvideoschild1{
+        /* background-color: red; */
+        width: 100%;
+        height: 100%;
+        margin-bottom: 50px;
+        margin-left: 10px;
+    }
+
+
+}
+
+@media(width < 500px){
+    
+    .togglebar2{
+        padding: 0%;
+        margin: 0%;
+        /* background-color: yellow; */
+    }
+    
+    /* .videos{
+        background-color: aqua;
+    }
+
+    .videosChild{
+        background-color: red;
+    }   */
+    
+}
+
+
 
 
 .sidebarParent{
-    border: 1px solid black;
+    /* border: 2px solid black; */
     display: flex;
     flex-wrap: wrap;
-    height: 100px;
+    /* height: 10%; */
+    /* margin: 10px; */
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     position: relative;
+    /* margin-top: 5px; */
+    /* background-color: rgba(227, 219, 219, 0.645); */
+    /* background-color: rgba(222, 222, 222, 0.441); */
+    background-color: rgba(210, 204, 204, 0.441);
+    box-shadow: 2px 2px 2px  1px;
+    margin-bottom: 10px;
 }
 
 .sidebarChild1{
-    font-size: x-large;
+    font-size: xx-large;
     background: none;
     border: none;
     cursor: pointer;
+    margin-left: 10px;
 }
 
 .sidebarChild2{
     font-size: xx-large;
     display: flex;
     align-items: center;
+    color: red;
 }
 
 
@@ -54,7 +149,7 @@
 }
 
 .userSidebar{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     padding: 5px 10px;
     border-radius: 5px;
     display: flex;
@@ -70,35 +165,43 @@
 }
 
 .togglebar{
-    border: 1px solid black;
+    /* border: 4px solid black; */
+    display: flex;
     /* display: flex;
     flex-wrap: wrap;
     justify-content:flex-start; */
     /* display: flex; */
+    /* flex-wrap: wrap; */
 }
 
 .togglebar1{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     padding-left: 25px;
     padding-right: 25px;
-    /* width: 10%; */
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content:space-evenly;
-    align-items: self-start;
-    height: 500px;
-    float: left;
+    background-color: rgba(210, 204, 204, 0.441);
+    /* align-items: self-start; */
+     /* width: 10%; */
+    /* justify-content:space-evenly; */
+    /* height: 500px;
+    float: left; */
 }
 
 .togglebar2{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
+    padding: 0px;
+    width: 100%;
+    background-color: whitesmoke;
     /* padding: 25px;
     width: 88%; */
     /* flex: 2; */
-    padding: 25px;
     /* margin-left: auto; */
 }
+
+
+
 
 .videos{
     display: flex;
@@ -107,12 +210,52 @@
 }
 
 .videosChild{
-    border: 4px solid orange;
+    border: 2px solid black;
     margin: 10px;
+    width: 325px;
+    border-radius: 10px;
 }
+
+.videosChild1{
+    font-size: larger;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+.videosChild2{
+    font-size: large;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+.videosChild3{
+    font-size: large;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+
+
 
 .sidebaricons{
     font-size: xx-large;
+}
+
+.sidebarChildren{
+    margin-top: 10px;
+}
+
+.sidebarChildren:hover{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.sidebaricons:hover{
+    background-color: white;
+    border-radius: 10px;   
 }
 
 
@@ -124,11 +267,11 @@
 
 
 .signupForm{
-    border: 2px solid green;
+    border: 0px solid green;
     display: flex;
     flex-wrap: wrap;
     /* width: 40%; */
-    padding: 25px;
+    padding: 15px;
     margin: auto;
     margin-top: 50px;
     justify-content: space-evenly;
@@ -140,8 +283,9 @@
 }
 
 .signupFormChild1{
-    border: 2px solid yellow;
-    padding: 50px;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
     margin-bottom: 25px;
 }
 
@@ -170,8 +314,14 @@
     background-color: rgba(197, 25, 25, 0.749);
 }
 
+.correctUser{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
 .userAccount{
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -189,13 +339,92 @@
     margin-bottom: 10px;
 }
 
-.mainvideos{
+.userAccount2{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
+.userAccountChild2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.headingInChannelAccount{
+    text-align: center;
+}
+
+.accountPara{
+    margin-left: 50px;
+}
+
+.uploadVideoForm{
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 50px;
+}
+
+.logout{
+    text-align: center;
+}
+
+.backdeletevideoindisplayvideo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.displayedVideo{
+    text-align: center;
+}
+
+.displayVideoDetails{
+    text-align: center;
+}
+
+.mainvideos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .mainvideoschild1{
-    border: 5px solid blue;
+    /* border: 2px solid black; */
+    width: 800px;
+}
+
+.mainvideosvideo{
+    border-radius: 25px;
+}
+
+.likesubscribe{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.likedislike{
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    margin-right: 25px;
+}
+
+.like{
+    margin-right: 20px;
+}
+
+/* .dislike{
+    margin-right: 50px;
+} */
+
+.commentInputField{
     width: 50%;
+    padding: 7px;
+    border-radius: 7px;
+    margin-right: 7px;
+    font-size: large;
 }
