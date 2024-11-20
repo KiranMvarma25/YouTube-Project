@@ -8,29 +8,29 @@ function UserLoginAccount(){
 
     const user = useSelector(state => state.user.userData);
 
-    const email = user.email;
+    const email = user.email;                                                               // Fetching by email
     
-    useEffect(() => {
-        const getData = async () => {
+    useEffect(() => {   
+        const getData = async () => {                                                       // Function for fetching all Users from Database through API
             try{
-                const response = await fetch("http://localhost:7000/base/signup", {
-                    method : "GET",
+                const response = await fetch("http://localhost:7000/base/signup", {         // Sending a GET request to the server to fetch the User   
+                    method : "GET",                                                         
                     headers : {
                         "Content-Type" : "application/json",
                     }
                 });
                 const output = await response.json();
                 const userData = output.User.find(user => user.email === email);
-                setData(userData ? [userData] : []);
+                setData(userData ? [userData] : []);                                        // Error Handling if Didn't use [] error will be occured
             }
             catch(error){
                 console.log(error);
             }
         };
         if(email){
-            getData();
-        }
-    },[email]);
+            getData();  
+        }   
+    },[email]);                                                                             // Email is Dependency, so that data is rendered only Logged In user's Email Changes
 
     return(
         <>

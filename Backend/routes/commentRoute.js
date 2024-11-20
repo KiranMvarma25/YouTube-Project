@@ -1,7 +1,9 @@
-const express = require('express');
+const express = require('express');             // Importing Express package
 const { addComment, getComments } = require('../controllers/commentController');
 
-let router = express.Router();
+// Importing all the created Functions and completion of API with HTTP Methods
+
+let router = express.Router();          // With the common name using Router
 
 router.post('/addcomment', addComment);
 router.get('/getcomments', getComments);

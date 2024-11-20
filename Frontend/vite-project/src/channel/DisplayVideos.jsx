@@ -5,20 +5,19 @@ import { toast } from "react-toastify";
 
 function DisplayVideos() {
 
-    const videoData = useSelector((state) => state.user.userChannel.slice(-1)[0]);
+    const videoData = useSelector((state) => state.user.userChannel.slice(-1)[0]);  // extracts the last item from the `userChannel` array in the Redux state.
 
     if(!videoData){
         return (
             <div>
-                <p>No video selected</p>
-                <Link className="Router-Link" to="/loginuseraccount">Back</Link>
+                <Link className="backButton" to={"/loginuseraccount"}>Back</Link>
             </div>
         );
     }
 
-    const handleClickDeleteVideo = async () => {
+    const handleClickDeleteVideo = async () => {                                    // Function for Deleting the Video Data in Database
         try{
-            const response = await fetch(`http://localhost:7000/base/deleteVideo/${videoData.channelVideoUploader}`, {
+            const response = await fetch(`http://localhost:7000/base/deleteVideo/${videoData.channelVideoUploader}`, {  // Sending a DELETE request to the server to remove the video based on the uploader's ID
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,13 +44,13 @@ function DisplayVideos() {
         }
     };
 
-    console.log("Display Videos",videoData);
+    // console.log("Display Videos",videoData);
 
     return (
         <>
             <br />
             <div className="backdeletevideoindisplayvideo">
-                <Link className="Router-Link" to="/loginuseraccount"><button className="signupformButton">Back</button></Link>
+                <Link className="Router-Link" to={"/loginuseraccount"}><button className="signupformButton">Back</button></Link>
                 <button onClick={handleClickDeleteVideo} className="signupformButton">Delete Video</button>
             </div>
 

@@ -1,10 +1,10 @@
-const signup = require('../model/signupSchema');
-const bcrypt = require('bcrypt');
+const signup = require('../model/signupSchema');                            // Importing Schema for Manipulating Data
+const bcrypt = require('bcrypt');                                           // Importing Bcrypt for Hashing the Password
 
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const jwt = require('jsonwebtoken');                                        // Importing JWT for Creating Token
+require('dotenv').config();                                                 // Tmporting environment varaiable from env File
 
-exports.loginUser = async (req,resp) => {
+exports.loginUser = async (req,resp) => {                                   // Function for Fetching User's Id after Signing
     try{
         const { email, pass } = req.body;
 
@@ -15,7 +15,7 @@ exports.loginUser = async (req,resp) => {
             });
         }
 
-        const user = await signup.findOne({email : email});
+        const user = await signup.findOne({email : email});                 // Fetching by email
 
         if(!user){
             return resp.status(404).json({
@@ -24,9 +24,9 @@ exports.loginUser = async (req,resp) => {
             });
         }
 
-        const isMatched = await bcrypt.compare(pass, user.pass);
+        const isMatched = await bcrypt.compare(pass, user.pass);            // Unhashing the password
         if(isMatched){
-            const payload = {
+            const payload = {                                               
                 name : user.name,
                 email : user.email,
                 _id: user._id,
@@ -37,8 +37,8 @@ exports.loginUser = async (req,resp) => {
                 expires : new Date(Date.now() + 1 * 24 * 60 * 60 * 1000)
             }
 
-            let token = jwt.sign(payload, process.env.SECRET_KEY);
-            resp.cookie("token", token, options).status(200).json({
+            let token = jwt.sign(payload, process.env.SECRET_KEY);          // Creating a JWT Token
+            resp.cookie("token", token, options).status(200).json({         // SSending in form of Cookie
                 success : true,
                 msg : "Login Successfully",
                 Token : token,

@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";   // Importing CreateSlice
 
-const storedUser = localStorage.getItem('user');
+const storedUser = localStorage.getItem('user');  // Getting the name from loacalstorage
 
 let initialUserData = null;
 
@@ -13,7 +13,7 @@ if(storedUser){
   }
 }
 
-const storedChannelVideo = localStorage.getItem("channelVideo");
+const storedChannelVideo = localStorage.getItem("channelVideo");  // Getting the video from loacalstorage
 let initialChannelVideo = null;
 
 if(storedChannelVideo){
@@ -25,11 +25,11 @@ if(storedChannelVideo){
   }
 }
 
-const userSlice = createSlice({
+const userSlice = createSlice({                     // Creating user slice
     
     name : 'user',
 
-    initialState : {
+    initialState : {                              
         userStatus : !!initialUserData,
         userData : initialUserData,
         userChannel : initialChannelVideo ? [initialChannelVideo] : [],
@@ -82,5 +82,5 @@ const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer;
-export const { login, logout, channel, setVideos, SearchFilteredVideos, addComment, getUsersForComments, fetchUsers } = userSlice.actions;
+export default userSlice.reducer;             // Exporting the Reducer
+export const { login, logout, channel, setVideos, SearchFilteredVideos, addComment, getUsersForComments, fetchUsers } = userSlice.actions;  // Exporting the Reducer Functions

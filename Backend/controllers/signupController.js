@@ -1,7 +1,7 @@
-const signup = require('../model/signupSchema');
-const bcrypt = require('bcrypt');
+const signup = require('../model/signupSchema');                            // Importing Schema for Manipulating Data
+const bcrypt = require('bcrypt');                                           // Importing Bcrypt for Hashing the Password
 
-exports.createUser = async (req,resp) => {
+exports.createUser = async (req,resp) => {                                  // Function for Creating User
     try{
         const { name, email, pass } = req.body;
 
@@ -12,7 +12,7 @@ exports.createUser = async (req,resp) => {
             });
         }
 
-        isPresent = await signup.findOne({email : email});
+        isPresent = await signup.findOne({email : email});            
         if(isPresent){
             return resp.status(400).json({
                 success : false,
@@ -22,7 +22,7 @@ exports.createUser = async (req,resp) => {
 
         let hashPass;
         try{
-            hashPass = await bcrypt.hash(pass, 10);
+            hashPass = await bcrypt.hash(pass, 10);                         // Hashing the password
         }
         catch(error){
             resp.status(400).json({
@@ -31,7 +31,7 @@ exports.createUser = async (req,resp) => {
             });
         };
 
-        const createdUser = await signup.create({ name, email, pass : hashPass, img : `https://api.dicebear.com/5.x/initials/svg?seed=${name}` });
+        const createdUser = await signup.create({ name, email, pass : hashPass, img : `https://api.dicebear.com/5.x/initials/svg?seed=${name}` }); // Url will creates Logo 
         resp.status(200).json({
             success : true,
             msg : "User Created Successfully",
@@ -46,7 +46,7 @@ exports.createUser = async (req,resp) => {
     };
 };
 
-exports.getUsers = async (req,resp) => {
+exports.getUsers = async (req,resp) => {                                //  Function for Fetching all Users
     try{
         const user = await signup.find();
 

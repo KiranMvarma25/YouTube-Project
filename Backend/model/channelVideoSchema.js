@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');           // Importing Mongoose package
 
-const channelVideo = new mongoose.Schema({
+const channelVideo = new mongoose.Schema({      // Creating Collection
     channelVideoName : {
         type : String,
         required : true,
@@ -18,10 +18,10 @@ const channelVideo = new mongoose.Schema({
         required : true,
     },
     channelVideoUploader : {
-        type : mongoose.Schema.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,      // Setting Id with the Id of Signing_up
         ref : "Signing_Up",
         required : true,
     } 
 })
 
-module.exports = mongoose.model('channelVideo', channelVideo);
+module.exports = mongoose.model('channelVideo', channelVideo);      // Exporting Collection

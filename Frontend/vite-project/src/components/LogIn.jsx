@@ -23,10 +23,10 @@ function LogIn(){
 
     const dispatch = useDispatch();
 
-    async function handleSubmit(e){
+    async function handleSubmit(e){                                                     // Function for Logging In Authorized User
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:7000/base/loginwithauth", {
+            const response = await fetch("http://localhost:7000/base/loginwithauth", {  // Sending a POST request to the server to Evaluate the Details with the Databaase 
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
@@ -38,7 +38,7 @@ function LogIn(){
                 localStorage.setItem('user', JSON.stringify(result.user));
                 localStorage.setItem("userId", result.user._id); 
                 navigate('/loginuseraccount');
-                console.log("Slice :",result);
+                // console.log("Slice :",result);
                 dispatch(login(result.user));
             }
             else{

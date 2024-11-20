@@ -13,11 +13,11 @@ function Channel() {
     const dispatch = useDispatch();
 
     const handleVideoChange = (e) => {
-        setVideo(e.target.files[0]);
+        setVideo(e.target.files[0]);                                                    // Sets the selected video file to the state
     };
 
     const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
+        setImage(e.target.files[0]);                                                    // Sets the selected image file to the state
     };
 
     let count = 0;
@@ -27,19 +27,19 @@ function Channel() {
 
         count = count + 1;
 
-        if(!title || !desc || !video || !image){
+        if(!title || !desc || !video || !image){                                        // Validates that all required fields are filled
             return window.alert("Please fill all fields and upload both video and image.");
         }
 
-        const formData = new FormData();
-        formData.append("channelVideoName", title);
+        const formData = new FormData();                                                // Prepares the form data for submission
+        formData.append("channelVideoName", title);                                     // Adds all the details into form data
         formData.append("channelVideoDescription", desc);
         formData.append("channelVideoUploader", localStorage.getItem("userId"));
         formData.append("video", video);
         formData.append("image", image);
 
-        try{
-            const response = await fetch("http://localhost:7000/base/uploadVideo", {
+        try{                                                                            // Function for sending the form data into the database through API
+            const response = await fetch("http://localhost:7000/base/uploadVideo", { 
                 method: "POST",
                 body: formData,
             });
@@ -47,7 +47,7 @@ function Channel() {
 
             if(result.success){
                 dispatch(channel(result.Channel)); 
-                if(count == 1){
+                if(count == 1){     // Only once Toast message is shown
                     toast.success("Video Uploaded Successfully");
                     setTimeout(() => {
                         toast.info("Refresh the Page");

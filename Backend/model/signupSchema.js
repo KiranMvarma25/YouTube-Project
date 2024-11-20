@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');                   // Importing Mongoose package
 
-const signup = new mongoose.Schema({
-    name : {
+const signup = new mongoose.Schema({                    // Creating Collection
+    name : {    
         type : String,
         required : true,
     },
@@ -19,4 +19,4 @@ const signup = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('Signing_Up', signup);
+module.exports = mongoose.model('Signing_Up', signup);  // Exporting Collection

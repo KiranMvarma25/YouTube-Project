@@ -15,7 +15,7 @@ function CorrectUser(props){
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    function handleClickLogOut(){
+    function handleClickLogOut(){       // Function for user log out
         dispatch(logout());
         localStorage.removeItem('user');
         window.alert("Logged Out");
@@ -23,10 +23,10 @@ function CorrectUser(props){
     }
 
     const userDetails = useSelector(store => store.user.userData);
-    console.log("userDetails", userDetails);
+    // console.log("userDetails", userDetails);
 
     const [toggle, setToggle] = useState(false);
-    function handleUploadVideo(){
+    function handleUploadVideo(){       
         setToggle(!toggle);
     }
 

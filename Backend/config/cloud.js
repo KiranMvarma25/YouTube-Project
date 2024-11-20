@@ -1,8 +1,8 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require('cloudinary').v2;                // Importing Cloudinary package
 
-require('dotenv').config();
+require('dotenv').config();                                 // Getting environment varaibles fromenv file
 
-exports.cloudinaryConnect = () => {
+exports.cloudinaryConnect = () => {                         // Connecting function for Cloudinary
     try{
         cloudinary.config({
             cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

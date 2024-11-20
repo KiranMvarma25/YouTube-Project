@@ -17,21 +17,21 @@ import { SearchFilteredVideos } from "./store/userSlice";
 
 function App(){
   
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);                        // For Hamburger Side Menu
 
   const [search, setSearch] = useState("");
-  const [filteredVideo, setFilteredVideo] = useState([]);
+  const [filteredVideo, setFilteredVideo] = useState([]);             // Fetching All the Data
   const [isSearchPerformed, setIsSearchPerformed] = useState(false);
 
   const dispatch = useDispatch();
 
   function handleClick(){
-    setToggle(!toggle);
-    console.log(toggle)
+    setToggle(!toggle);                                               // Function performs Toggling of Menu
+    // console.log(toggle)
   }
 
-  const userImg = useSelector(state => state.user.userData);
-  const userStatus = useSelector(state => state.user.userStatus);
+  const userImg = useSelector(state => state.user.userData);          // Fetching all data of Loggedin User
+  const userStatus = useSelector(state => state.user.userStatus);     // Knowing the Status of USer
 
   // useEffect(() => {
   //   if(userImg){
@@ -44,32 +44,32 @@ function App(){
 
 
 
-  console.log("userImg",userImg);
+  // console.log("userImg",userImg);
   // console.log("userStatus",userStatus);
 
-  const data = useSelector(state => state.user.allVideos || []);
+  const data = useSelector(state => state.user.allVideos || []);      // Used to fetched all the videos
   // console.log("Filter data",data);
 
   useEffect(() => {
     if (!isSearchPerformed) {
       setFilteredVideo(data);
     }
-  }, [data, isSearchPerformed]);
+  }, [data, isSearchPerformed]);                                      // If search is performed only searched video is displayed
 
   function handleSearch(e) {
     const search = e.target.value.toLowerCase();
     setSearch(search);
-    console.log("Search", search);
+    // console.log("Search", search);
   }
 
-  function handleSearchClick() {
+  function handleSearchClick() {                                      // Function for searching the video by title
     const filtered = data.filter(video =>
       video.channelVideoName.toLowerCase().includes(search)
     );
     setFilteredVideo(filtered);
     dispatch(SearchFilteredVideos(filtered));
     setIsSearchPerformed(true); 
-    console.log("filtered", filtered);
+    // console.log("filtered", filtered);
   }
 
   const handleShowAllVideos = () => {
@@ -90,7 +90,7 @@ function App(){
             <button className="sidebarChild4" onClick={handleSearchClick}><ImSearch /></button>
           </div>
           
-          <div className="userSidebar">
+          <div className="userSidebar">   {/* After logging into account User Name is Displayed */}
             { userStatus ? 
                 userImg ? (
                             <Link className="Router-Link" to={"/loginuseraccount"}><img className="sidebarChild5" src={userImg.img} alt="User" /><p className="noneformobile">{userImg.name}</p></Link>  
@@ -105,13 +105,13 @@ function App(){
       </div>
 
       <div className="togglebar">
-
-        <div className="togglebar1">
-          {!toggle ? <Sidebar ShowAllVideos={handleShowAllVideos} /> : <SidebarIcons /> }
-        </div>
         
-        <div className="togglebar2">
-          <Outlet />
+        <div className="togglebar1">                
+          {!toggle ? <Sidebar ShowAllVideos={handleShowAllVideos} /> : <SidebarIcons /> }   {/* toggle responsible for sidebar hamburger menu */}
+        </div>  
+        
+        <div className="togglebar2">                
+          <Outlet />                                {/* All Children Components will be displayed here */}
         </div>
         {/* <Outlet /> */}
       </div>

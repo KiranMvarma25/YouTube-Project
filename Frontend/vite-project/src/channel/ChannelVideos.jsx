@@ -10,16 +10,16 @@ function ChannelVideos(){
 
     const [data, setData] = useState([]);
 
-    const userDetails = useSelector(store => store.user.userData);
+    const userDetails = useSelector(store => store.user.userData);                                  // Importing USer Data from Redux
     console.log("userDetails", userDetails);
 
     const userId = userDetails?._id;
 
     const dispatch = useDispatch();
 
-    const getData = async () => {
+    const getData = async () => {                                                                   // Function for fetching Channel videos for that logged in user
         try{
-            const response = await fetch(`http://localhost:7000/base/channelVideos/${userId}`, {
+            const response = await fetch(`http://localhost:7000/base/channelVideos/${userId}`, {    // Sending a GET request to the server to fetch the User     
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -31,7 +31,7 @@ function ChannelVideos(){
                 dispatch(channel(output));
             } 
             else{
-                setData([]);
+                setData([]);                                                                        // If it not set to null error will be occured
             }   
         } 
         catch(error){

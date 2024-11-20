@@ -17,8 +17,8 @@ import { MdThumbDown } from "react-icons/md";
 
 function MainVideos(){
     
-    let videoData = useSelector(state => state.user.allVideos);
-    console.log("All Video Data:", videoData);
+    let videoData = useSelector(state => state.user.allVideos);     // IMporting Video data from recux store
+    // console.log("All Video Data:", videoData);
 
     if(videoData.length == 0){
         const savedVideos = localStorage.getItem('allVideos');
@@ -27,26 +27,26 @@ function MainVideos(){
         }
     }
 
-    let params = useParams();
+    let params = useParams();                                    
     let id = params.id;
 
-    const filteredVideo = videoData.find(video => video._id == id);
-    console.log("Filtered Video:", filteredVideo);
+    const filteredVideo = videoData.find(video => video._id == id);         // Displaying that particular video after user clicking on the thumbnail
+    // console.log("Filtered Video:", filteredVideo);
 
-    const otherVideos = videoData.filter(video => video._id !== id);
-    console.log("Other Videos Data:", otherVideos);
+    const otherVideos = videoData.filter(video => video._id !== id);        // // Displaying that other video
+    // console.log("Other Videos Data:", otherVideos);
 
     const dispatch = useDispatch();
 
-    const userId = useSelector(state => state.user.userData);
-    console.log("USER DATA",userId._id)
+    const userId = useSelector(state => state.user.userData);               // Fetching User' Data
+    // console.log("USER DATA",userId._id)
 
     const [text,setText] = useState("");
 
     const [data, setData] = useState({});
 
-    const allComments = useSelector(state => state.user.comments);
-    console.log("ALL COMMENTS", allComments);
+    const allComments = useSelector(state => state.user.comments);          // Fetching all the comments
+    // console.log("ALL COMMENTS", allComments);
 
     useEffect(() => {
         if(allComments.length === 0){
@@ -56,12 +56,12 @@ function MainVideos(){
                 parsedComments.forEach(comment => dispatch(addComment(comment)));
             }
         }
-    }, [allComments, dispatch]);
+    }, [allComments, dispatch]);          // this useEffect runs if comments or dispatch changes                                 
 
     async function handleClickAddComment(e){
         e.preventDefault();
         try{
-            let response = await fetch("http://localhost:7000/base/addcomment", {
+            let response = await fetch("http://localhost:7000/base/addcomment", {       // Function for storing comments in database through API(Backend)
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
@@ -75,9 +75,9 @@ function MainVideos(){
             const result = await response.json();
             if(result.success){
                 dispatch(addComment(result.Comment));;
-                const updatedComments = [...allComments, result.Comment];
+                const updatedComments = [...allComments, result.Comment];               // If new comments are added it updates and stores the previous comments
                 localStorage.setItem("comments", JSON.stringify(updatedComments));
-                console.log("Comment added successfully!");
+                // console.log("Comment added successfully!");
                 toast.success("Added Comment");
                 setText("");
             }
@@ -89,11 +89,11 @@ function MainVideos(){
             console.log(error);
         }
     }
-    console.log("Text", text);
+    // console.log("Text", text);
 
     const usersForComments = async () => {
         try{
-            let response = await fetch("http://localhost:7000/base/signup", {
+            let response = await fetch("http://localhost:7000/base/signup", {       // Function for fetching all comments from database through API(Backend)
                 method : "GET",
                 headers : {
                     "Content-Type" : "application/json"
@@ -103,7 +103,7 @@ function MainVideos(){
             const result = await response.json();
             if(result.success){
                 dispatch(getUsersForComments(result.User));
-                console.log("Fetched Users Successfully");
+                // console.log("Fetched Users Successfully");
             }
             else{
                 console.log("Erron in fetching users");
@@ -120,7 +120,7 @@ function MainVideos(){
 
     
     const userswhoarecommented = useSelector(state => state.user.allUsers[0]);
-    console.log("Users who are Commented",userswhoarecommented);
+    // console.log("Users who are Commented",userswhoarecommented);
 
     // const usersArray = userswhoarecommented[0];
     // console.log("Users Array", usersArray);
@@ -128,11 +128,11 @@ function MainVideos(){
     const userNames = userswhoarecommented ? allComments.map(comment => {
                         const user = userswhoarecommented.find(user => user._id === comment.commentedUser);
                             return user ? user.name : null}) : [];
-    console.log("Names",userNames);
+    // console.log("Names",userNames);
 
     const getUsers = async () => {
         try{
-            let response = await fetch("http://localhost:7000/base/signup", {
+            let response = await fetch("http://localhost:7000/base/signup", {       // Function for fetching all users who are commented from database through API(Backend)
                 method : "GET",
                 headers : {
                     "Content-Type" : "application/json"
@@ -141,7 +141,7 @@ function MainVideos(){
             const result = await response.json();
             if(result.success){
                 dispatch(fetchUsers(result.User));
-                console.log("Fetched Users Successfully");
+                // console.log("Fetched Users Successfully");
             }
             else{
                 console.log("Erron in fetching users");
@@ -158,7 +158,7 @@ function MainVideos(){
 
     
     const fetchedUsers = useSelector(state => state.user.Users);
-    console.log("Fetched Users in Main Videos",fetchedUsers);
+    // console.log("Fetched Users in Main Videos",fetchedUsers);
 
     return (
         <>
@@ -166,7 +166,7 @@ function MainVideos(){
 
                 {filteredVideo ? (
                     <div className="mainvideoschild1">
-                        <video className="mainvideosvideo" src={filteredVideo.channelVideourl} width="100%" height="40%" controls></video>
+                        <video className="mainvideosvideo" src={filteredVideo.channelVideourl} width="95%" height="50%" controls></video>
                         <br />
                         <h1>{filteredVideo.channelVideoName}</h1>
                         <br />
@@ -180,8 +180,8 @@ function MainVideos(){
                         <br />
                         <div className="likesubscribe">
                                     <div className="likedislike">
-                                        <h2 className="like"><FaThumbsUp />5.5k</h2>
-                                        <h2 className="dislike"><MdThumbDown /></h2>
+                                        <h2 className="like"><FaThumbsUp />15.5k</h2>
+                                        <h2 className="dislike"><MdThumbDown />1k</h2>
                                     </div>
                             <button className="signupformButton">Subscribe</button>
                         </div>
@@ -191,9 +191,10 @@ function MainVideos(){
                         <button className="signupformButton" onClick={handleClickAddComment}>Add</button>
                         <br />
                         <br />
+                        {/* filters and displays correct user with his comments */}
                         <div>
-                            {
-                                allComments.filter(comment => comment.commentedVideo === filteredVideo._id)
+                            {  
+                                allComments.filter(comment => comment.commentedVideo === filteredVideo._id)  
                                             .map(comment => {
                                                 const user = userswhoarecommented ? userswhoarecommented.find(user => user._id === comment.commentedUser) : null;
                                                     return user ? (
@@ -210,7 +211,7 @@ function MainVideos(){
                         <p>Video not found!</p>
                     )}
 
-                
+                {/* displays other videos */}
                 <div className="mainvideos2">
                     <h2>Other Videos:</h2>
                     {otherVideos.length > 0 ? (

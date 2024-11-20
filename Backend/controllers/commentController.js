@@ -1,6 +1,6 @@
-const commentSchema = require('../model/commentSchema');
+const commentSchema = require('../model/commentSchema');                                    // Importing Schema for Manipulating Data
 
-exports.addComment = async (req,resp) => {
+exports.addComment = async (req,resp) => {                                                  // Function for Creating Comments
     try{
         const { comment, commentedUser, commentedVideo } = req.body;
 
@@ -20,7 +20,7 @@ exports.addComment = async (req,resp) => {
     };
 }
 
-exports.getComments = async (req,resp) => {
+exports.getComments = async (req,resp) => {                                                 // Function for Fetching Comments
     try{
         const comments = await commentSchema.find();
         if(!comments){

@@ -1,9 +1,9 @@
-const signupSchema = require('../model/signupSchema')
-const cloudinary = require('cloudinary').v2;
-const channelVideoSchema = require('../model/channelVideoSchema');  
+const signupSchema = require('../model/signupSchema')                   // Importing Schema for Manipulating Data
+const cloudinary = require('cloudinary').v2;                            // Importing Cloudinary package
+const channelVideoSchema = require('../model/channelVideoSchema');      // Importing Schema for Manipulating Data
 
 
-async function uploadToCloudinary(file, folder) {
+async function uploadToCloudinary(file, folder) {                       // Function for Uploading Data into Cloudinary
     const options = {
         folder: folder,
         resource_type: 'auto', 
@@ -19,7 +19,7 @@ async function uploadToCloudinary(file, folder) {
 }
 
 
-exports.localUpload = async (req, resp) => {
+exports.localUpload = async (req, resp) => {                              // Function for Uploading Image into Local Storage
     try {
         const file = req.files.image;
         console.log("File", file);
@@ -46,7 +46,7 @@ exports.localUpload = async (req, resp) => {
 };
 
 
-exports.localVideoUpload = async (req, resp) => {
+exports.localVideoUpload = async (req, resp) => {                                       // Function for Uploading Video into Local Storage
     try{
         const file = req.files.video;
         console.log("File", file);
@@ -73,7 +73,7 @@ exports.localVideoUpload = async (req, resp) => {
 };
 
 
-exports.uploadChannelVideo = async (req, resp) => {
+exports.uploadChannelVideo = async (req, resp) => {                                     // Function for Uploading the Videos 
     try {
         const { channelVideoName, channelVideoDescription, channelVideoUploader } = req.body;
 
@@ -155,7 +155,7 @@ exports.uploadChannelVideo = async (req, resp) => {
     }
 };
 
-exports.getChannelVideo = async(req,resp) => {
+exports.getChannelVideo = async(req,resp) => {                                      // Function for Fetching the Videos
     try{
         const getVideo = await channelVideoSchema.find();
         resp.status(200).json({
@@ -172,7 +172,7 @@ exports.getChannelVideo = async(req,resp) => {
     }
 }
 
-exports.getChannelVideoById = async (req, resp) => {
+exports.getChannelVideoById = async (req, resp) => {                                // Function for Fetching the Video by uploader's Id
     try {
         const { userId } = req.params;
 
@@ -209,7 +209,7 @@ exports.getChannelVideoById = async (req, resp) => {
 };
 
 
-exports.deleteChannelVideoById = async (req, resp) => {
+exports.deleteChannelVideoById = async (req, resp) => {                             // Function for Deleting the Video by uploader's Id
     try {
         const { videoId } = req.body;
 

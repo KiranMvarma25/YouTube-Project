@@ -107,6 +107,8 @@
     background-color: rgba(210, 204, 204, 0.441);
     box-shadow: 2px 2px 2px  1px;
     margin-bottom: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 .sidebarChild1{
@@ -328,6 +330,9 @@
     align-items: center;
     padding: 25px;
     margin-top: 25px;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 10px;
 }
 
 .userAccountImage{
@@ -343,6 +348,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 10px;
 }
 
 .userAccountChild2{
@@ -397,6 +405,7 @@
 
 .mainvideosvideo{
     border-radius: 25px;
+    border: 2px solid black;
 }
 
 .likesubscribe{
@@ -427,4 +436,28 @@
     border-radius: 7px;
     margin-right: 7px;
     font-size: large;
+}
+
+.ErrorPage{
+    text-align: center;
+    margin: auto;
+    margin-top: 100px;
+    border: 2px solid black;
+    padding: 10px;
+    width: 400px;
+    border-radius: 10px;
+    background-color: rgba(208, 9, 9, 0.785);
+    color: whitesmoke;
+}
+
+.backButton{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    padding: 7px;
+    background-color: rgb(240, 8, 8);
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+    margin-left: 25px;
 }

@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const jwt = require('jsonwebtoken');                                // Importing JWT for Creating Token
+require('dotenv').config();                                         // Tmporting environment varaiable from env File
 
-exports.auth = (req,resp,next) => {
+exports.auth = (req,resp,next) => {                                 // Function for Authentication of Token
     try{
         const token = req.cookies.token;
 
@@ -13,7 +13,7 @@ exports.auth = (req,resp,next) => {
         }
 
         try{
-            const payload = jwt.verify(token, process.env.SECRET_KEY);
+            const payload = jwt.verify(token, process.env.SECRET_KEY);      // Matching the Token with Secret Key
             req.user = payload;
         }
         catch(error){
@@ -23,7 +23,7 @@ exports.auth = (req,resp,next) => {
             });
         };
 
-        next();
+        next();                                                         // If the Function is Succeeded moves further
     }
     catch(error){
         resp.status(500).json({

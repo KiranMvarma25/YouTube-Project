@@ -10,15 +10,15 @@ import { useSelector } from "react-redux";
 
 function Videos(){
 
-    const [videoData, setVideoData] = useState([]);
+    const [videoData, setVideoData] = useState([]);    
 
     const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(true);
 
-    const getVideos = async () => {
+    const getVideos = async () => {                                 // Function for fetching all videos from database through API(Backend)
         try{
-            let response = await fetch('http://localhost:7000/base/getVideo', {
+            let response = await fetch('http://localhost:7000/base/getVideo', {     // Sending a GET request to the server to fetch the video 
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,7 +27,7 @@ function Videos(){
             const output = await response.json();
             if(output){
                 setVideoData(output.Data);
-                dispatch(setVideos(output.Data));
+                dispatch(setVideos(output.Data));                                   // Storing data in redux store
                 localStorage.setItem('allVideos', JSON.stringify(output.Data));
                 setLoading(false);
             }
@@ -42,14 +42,14 @@ function Videos(){
     //     getVideos();
     // },[]);
 
-    console.log("Videos Data",videoData);
+    // console.log("Videos Data",videoData);
 
     const filteredVideo = useSelector(state => state.user.searchedVideos);
-    console.log("Filtered Video", filteredVideo);
+    // console.log("Filtered Video", filteredVideo);
 
-    const getUsers = async () => {
+    const getUsers = async () => {                                                  // Function for fetching all Users Details from database through API(Backend)
         try{
-            let response = await fetch("http://localhost:7000/base/signup", {
+            let response = await fetch("http://localhost:7000/base/signup", {       // Sending a GET request to the server to fetch the User Details        
                 method : "GET",
                 headers : {
                     "Content-Type" : "application/json"
@@ -57,8 +57,8 @@ function Videos(){
             });
             const result = await response.json();
             if(result.success){
-                dispatch(fetchUsers(result.User));
-                console.log("Fetched Users Successfully");
+                dispatch(fetchUsers(result.User));          // Storing data in redux store
+                // console.log("Fetched Users Successfully");
             }
             else{
                 console.log("Erron in fetching users");
@@ -69,14 +69,14 @@ function Videos(){
         }
     }
 
-    useEffect(() => {
+    useEffect(() => {           
         getVideos();
         getUsers();
     },[]);
 
     
-    const fetchedUsers = useSelector(state => state.user.Users);
-    console.log("Fetched Users",fetchedUsers);
+    const fetchedUsers = useSelector(state => state.user.Users);                    // Fetching the users who are commented
+    // console.log("Fetched Users",fetchedUsers);
 
     return (
         <>
@@ -91,7 +91,7 @@ function Videos(){
                                     <p className="videosChild1">{video.channelVideoName}</p>
                                     {/* <p className="videosChild2">{video.channelVideoDescription}</p> */}
                                     <p className="videosChild2">{uploader ? uploader.name : "Unknown Uploader"}</p>
-                                    <p className="videosChild3">views</p>
+                                    <p className="videosChild3">150k views</p>
                                 </div>
                             </Link>
                         );

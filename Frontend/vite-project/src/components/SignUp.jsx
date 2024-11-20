@@ -9,13 +9,13 @@ import { useSelector } from "react-redux";
 
 function SignUp(){
 
-    const [data, setData] = useState({
+    const [data, setData] = useState({                                          // stores users data
         name : "",
         email : "",
         pass : ""
     })
 
-    function handleChange(e){
+    function handleChange(e){                                                   // stores previous and updated details 
         const { name, value } = e.target;
         setData((ps) => ({
             ...ps,
@@ -27,10 +27,10 @@ function SignUp(){
 
     const dispatch = useDispatch();
 
-    async function handleSubmit(e){
+    async function handleSubmit(e){                                             // Function for saving Users data in Database
         e.preventDefault();
         try{
-            const response = await fetch("http://localhost:7000/base/signup", {
+            const response = await fetch("http://localhost:7000/base/signup", { // Sending a GET request to the server to store the user details in database  
                 method : "POST",
                 headers : {
                     "Content-Type" : "application/json"
@@ -53,8 +53,8 @@ function SignUp(){
         }
     }
 
-    const userStatus = useSelector(state => state.user.userStatus);
-    console.log("USERSTATUS",userStatus)
+    const userStatus = useSelector(state => state.user.userStatus);             // Fetching the User Status from Redux Store
+    // console.log("USERSTATUS",userStatus)
 
     return(
         <>  

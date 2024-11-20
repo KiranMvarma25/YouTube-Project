@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');               // Importing Mongoose package
 
-const commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({         // Creating Collection
     comment : {
         type : String,
         required : true,
@@ -11,10 +11,10 @@ const commentSchema = new mongoose.Schema({
         required : true,
     },
     commentedVideo : {
-        type : mongoose.Schema.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,      // Setting Id with the Id of channelVideo
         ref : "channelVideo",
         required : true,
     },
 });
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('Comment', commentSchema);      // Exporting Collection

@@ -1,7 +1,9 @@
-const express = require('express');
+const express = require('express');         // Importing Express package
 const { uploadChannelVideo, localUpload, localVideoUpload, getChannelVideo, getChannelVideoById, deleteChannelVideoById } = require('../controllers/channelVideoController');
 
-const router = express.Router();
+// Importing all the created Functions and completion of API with HTTP Methods
+
+const router = express.Router();            // With the common name using Router
 
 router.post('/localUpload', localUpload);
 router.post('/localVideoUpload', localVideoUpload);
