@@ -16,6 +16,7 @@ Contents -
 
 
 
+
 1. Introduction -
 
 This project is a YouTube clone built using the MERN stack (MongoDB, Express.js, React, and Node.js). It allows users to view, upload, search, and interact with videos while managing their channels. It includes features like authentication, responsive design, and CRUD operations for videos and comments.
